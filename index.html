@@ -149,48 +149,116 @@
       border-radius: 999px;
     }
 
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
+    /* FEATURED WEBSITE CAROUSEL */
+    .portfolio-carousel {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
     }
 
-    .card {
+    .carousel-window {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 10px 28px rgba(22,60,122,0.08);
+      box-shadow: 0 18px 45px rgba(22,60,122,0.14);
+      touch-action: pan-y;
     }
 
-    .site-preview {
-      aspect-ratio: 16 / 10;
-      background: linear-gradient(135deg, #eef5ff, #ffffff);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      overflow: hidden;
+    .carousel-track {
+      display: flex;
+      transition: transform 0.55s ease;
     }
 
-    .site-preview img {
-      display: block;
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      background: var(--white);
+    }
+
+    .carousel-image {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
       object-fit: cover;
       object-position: top center;
     }
 
-    .card h3 {
-      margin: 18px 0 6px;
-      font-size: 21px;
-      color: #07164a;
-      line-height: 1.25;
+    .carousel-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 46px 26px 24px;
+      color: var(--white);
+      background: linear-gradient(180deg, rgba(7,22,74,0) 0%, rgba(7,22,74,0.88) 100%);
     }
 
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      word-break: break-word;
+    .carousel-caption h3 {
+      margin: 0 0 4px;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.2;
+    }
+
+    .carousel-caption a {
+      color: var(--white);
+      font-weight: 700;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      z-index: 2;
+    }
+
+    .carousel-button:hover {
+      background: var(--white);
+    }
+
+    .carousel-button.prev {
+      left: 18px;
+    }
+
+    .carousel-button.next {
+      right: 18px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border: 0;
+      border-radius: 50%;
+      background: #c9d4e3;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      background: var(--teal);
     }
 
     .offer-grid {
@@ -379,7 +447,6 @@
     }
 
     @media (max-width: 860px) {
-      .portfolio-grid,
       .offer-grid,
       .contact-layout {
         grid-template-columns: 1fr;
@@ -389,8 +456,42 @@
         padding: 60px 18px 70px;
       }
 
-      .portfolio-grid {
-        gap: 18px;
+      .carousel-caption {
+        padding: 38px 18px 18px;
+      }
+
+      .carousel-button {
+        width: 42px;
+        height: 42px;
+        font-size: 24px;
+      }
+
+      .carousel-button.prev {
+        left: 12px;
+      }
+
+      .carousel-button.next {
+        right: 12px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .carousel-image {
+        aspect-ratio: 4 / 3;
+      }
+
+      .carousel-caption h3 {
+        font-size: 21px;
+      }
+
+      .carousel-caption a {
+        font-size: 15px;
+      }
+
+      .carousel-button {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
       }
     }
   </style>
@@ -414,38 +515,54 @@
         <div class="underline"></div>
       </div>
 
-      <div class="portfolio-grid">
-        <article class="card">
-          <div class="site-preview">
-            <img src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
-          </div>
-          <h3>ASD Helping Hands</h3>
-          <p><a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a></p>
-        </article>
+      <div class="portfolio-carousel" aria-label="Website portfolio carousel">
+        <div class="carousel-window" id="carousel-window">
+          <div class="carousel-track" id="carousel-track">
 
-        <article class="card">
-          <div class="site-preview">
-            <img src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
-          </div>
-          <h3>Norfolk Autism Partnership</h3>
-          <p><a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a></p>
-        </article>
+            <article class="carousel-slide">
+              <img class="carousel-image" src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
+              <div class="carousel-caption">
+                <h3>ASD Helping Hands</h3>
+                <a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a>
+              </div>
+            </article>
 
-        <article class="card">
-          <div class="site-preview">
-            <img src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
-          </div>
-          <h3>Norfolk Learning Disability Partnership</h3>
-          <p><a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a></p>
-        </article>
+            <article class="carousel-slide">
+              <img class="carousel-image" src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
+              <div class="carousel-caption">
+                <h3>Norfolk Autism Partnership</h3>
+                <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
+              </div>
+            </article>
 
-        <article class="card">
-          <div class="site-preview">
-            <img src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
+            <article class="carousel-slide">
+              <img class="carousel-image" src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
+              <div class="carousel-caption">
+                <h3>Norfolk Learning Disability Partnership</h3>
+                <a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a>
+              </div>
+            </article>
+
+            <article class="carousel-slide">
+              <img class="carousel-image" src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
+              <div class="carousel-caption">
+                <h3>FADLOS</h3>
+                <a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a>
+              </div>
+            </article>
+
           </div>
-          <h3>FADLOS</h3>
-          <p><a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a></p>
-        </article>
+
+          <button class="carousel-button prev" id="prev-slide" aria-label="Previous website">‹</button>
+          <button class="carousel-button next" id="next-slide" aria-label="Next website">›</button>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots" aria-label="Choose a website slide">
+          <button class="carousel-dot active" aria-label="Show ASD Helping Hands website"></button>
+          <button class="carousel-dot" aria-label="Show Norfolk Autism Partnership website"></button>
+          <button class="carousel-dot" aria-label="Show Norfolk Learning Disability Partnership website"></button>
+          <button class="carousel-dot" aria-label="Show FADLOS website"></button>
+        </div>
       </div>
     </div>
   </section>
@@ -529,6 +646,7 @@
   </footer>
 
   <script>
+    /* CONTACT FORM */
     const form = document.getElementById("contact-form");
     const formMessage = document.getElementById("form-message");
 
@@ -567,6 +685,91 @@
       submitButton.disabled = false;
       submitButton.textContent = "Send enquiry";
     });
+
+    /* PORTFOLIO CAROUSEL */
+    const track = document.getElementById("carousel-track");
+    const slides = Array.from(track.children);
+    const prevButton = document.getElementById("prev-slide");
+    const nextButton = document.getElementById("next-slide");
+    const dots = Array.from(document.querySelectorAll(".carousel-dot"));
+    const carouselWindow = document.getElementById("carousel-window");
+
+    let currentIndex = 0;
+    let autoSlideInterval;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function updateCarousel(index) {
+      currentIndex = index;
+
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("active", dotIndex === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+      updateCarousel(nextIndex);
+    }
+
+    function previousSlide() {
+      const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+      updateCarousel(prevIndex);
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 3000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    nextButton.addEventListener("click", function() {
+      nextSlide();
+      resetAutoSlide();
+    });
+
+    prevButton.addEventListener("click", function() {
+      previousSlide();
+      resetAutoSlide();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", function() {
+        updateCarousel(index);
+        resetAutoSlide();
+      });
+    });
+
+    carouselWindow.addEventListener("touchstart", function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+    });
+
+    carouselWindow.addEventListener("touchend", function(event) {
+      touchEndX = event.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeDistance = touchStartX - touchEndX;
+
+      if (swipeDistance > 50) {
+        nextSlide();
+        resetAutoSlide();
+      }
+
+      if (swipeDistance < -50) {
+        previousSlide();
+        resetAutoSlide();
+      }
+    }
+
+    updateCarousel(0);
+    startAutoSlide();
   </script>
 
 </body>
