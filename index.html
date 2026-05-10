@@ -150,6 +150,7 @@
     }
 
     /* FEATURED WEBSITE CAROUSEL */
+
     .portfolio-carousel {
       position: relative;
       max-width: 980px;
@@ -179,10 +180,11 @@
 
     .carousel-image {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 10;
       display: block;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
+      object-position: center;
+      background: var(--white);
     }
 
     .carousel-caption {
@@ -476,10 +478,6 @@
     }
 
     @media (max-width: 560px) {
-      .carousel-image {
-        aspect-ratio: 4 / 3;
-      }
-
       .carousel-caption h3 {
         font-size: 21px;
       }
