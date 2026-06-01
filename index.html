@@ -1,49 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Norfolk Web Studio | Simple, Accessible Websites</title>
-  <meta name="description" content="Norfolk Web Studio creates simple, accessible websites for charities, local organisations and small businesses." />
-
+  <meta name="description" content="Norfolk Web Studio creates simple, accessible websites for charities, small organisations, sole traders and local businesses across Norfolk." />
   <style>
     :root {
       --navy: #163c7a;
       --teal: #4bb7c9;
       --purple: #6d57c8;
-      --ink: #23324a;
-      --muted: #667085;
-      --light: #f7f9fc;
-      --border: #e7edf5;
+      --ink: #172033;
+      --muted: #5d687b;
+      --light: #f4f7fb;
+      --border: #dbe4f0;
       --white: #ffffff;
+      --success: #1f8a5b;
+      --shadow: 0 18px 40px rgba(22, 60, 122, 0.14);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--ink);
-      background: var(--white);
+      background: var(--light);
       line-height: 1.6;
     }
 
     a {
+      color: inherit;
+    }
+
+    .top-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 18px rgba(22, 60, 122, 0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
       color: var(--navy);
     }
 
     .hero {
       background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
       color: var(--white);
-      text-align: center;
-      padding: 80px 20px 90px;
+      padding: 82px 20px 70px;
       position: relative;
       overflow: hidden;
     }
@@ -51,724 +105,695 @@
     .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.18), transparent 28%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.12), transparent 30%);
-      pointer-events: none;
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: -90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
     }
 
     .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 42px;
+      align-items: center;
       position: relative;
       z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
     }
 
-    .logo-mark {
-      width: 96px;
-      height: 96px;
-      background: var(--white);
-      color: var(--navy);
-      border-radius: 22px;
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 40px;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
       font-weight: 800;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.18);
-    }
-
-    .logo-mark span {
-      color: var(--teal);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(40px, 7vw, 72px);
+      margin: 0 0 18px;
+      font-size: clamp(2.25rem, 5vw, 4.5rem);
       line-height: 1.05;
-      letter-spacing: -2px;
+      letter-spacing: -0.05em;
     }
 
     .hero p {
-      font-size: clamp(18px, 2vw, 24px);
-      max-width: 760px;
-      margin: 22px auto 34px;
+      font-size: 1.2rem;
+      max-width: 680px;
+      margin: 0 0 26px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
     }
 
     .button {
-      display: inline-block;
-      background: var(--teal);
-      color: var(--white);
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 700;
-      border: 0;
-      cursor: pointer;
-      font-size: 16px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.16);
-    }
-
-    .button:hover {
-      filter: brightness(0.95);
-    }
-
-    section {
-      padding: 64px 20px;
-    }
-
-    .section-light {
-      background: var(--light);
-    }
-
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 34px;
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 40px);
-      color: #07164a;
-      line-height: 1.15;
-    }
-
-    .underline {
-      width: 70px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--teal), var(--purple));
-      margin: 16px auto 0;
-      border-radius: 999px;
-    }
-
-    /* FEATURED WEBSITE CAROUSEL */
-
-    .portfolio-carousel {
-      position: relative;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .carousel-window {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 45px rgba(22,60,122,0.14);
-      touch-action: pan-y;
-    }
-
-    .carousel-track {
-      display: flex;
-      transition: transform 0.55s ease;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      position: relative;
-      background: var(--white);
-    }
-
-    .carousel-image {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      display: block;
-      object-fit: contain;
-      object-position: center;
-      background: var(--white);
-    }
-
-    .carousel-caption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 46px 26px 24px;
-      color: var(--white);
-      background: linear-gradient(180deg, rgba(7,22,74,0) 0%, rgba(7,22,74,0.88) 100%);
-    }
-
-    .carousel-caption h3 {
-      margin: 0 0 4px;
-      font-size: clamp(22px, 3vw, 30px);
-      line-height: 1.2;
-    }
-
-    .carousel-caption a {
-      color: var(--white);
-      font-weight: 700;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      border: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      color: var(--navy);
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-      z-index: 2;
-    }
-
-    .carousel-button:hover {
-      background: var(--white);
-    }
-
-    .carousel-button.prev {
-      left: 18px;
-    }
-
-    .carousel-button.next {
-      right: 18px;
-    }
-
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      border: 0;
-      border-radius: 50%;
-      background: #c9d4e3;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .carousel-dot.active {
-      background: var(--teal);
-    }
-
-    .offer-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .icon-circle {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: var(--white);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      box-shadow: 0 10px 28px rgba(22,60,122,0.08);
-      font-size: 58px;
-      color: var(--teal);
-    }
-
-    .offer-grid h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 40px);
-      color: #07164a;
-      line-height: 1.15;
-    }
-
-    .tick-list {
-      list-style: none;
-      padding: 0;
-      margin: 22px 0 0;
-    }
-
-    .tick-list li {
-      margin: 12px 0;
-      padding-left: 34px;
-      position: relative;
-    }
-
-    .tick-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: var(--white);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .button-secondary {
+      border: 2px solid rgba(255,255,255,0.65);
+      color: var(--white);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.96);
+      color: var(--ink);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.55rem;
+      line-height: 1.2;
+    }
+
+    .hero-card .price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin: 12px 0 6px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-card .price span {
+      display: block;
+      font-size: 1rem;
       font-weight: 700;
+      color: var(--muted);
+      letter-spacing: normal;
+    }
+
+    .hero-card ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-card li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .hero-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 900;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      color: var(--navy);
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 12px 28px rgba(22, 60, 122, 0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .service-highlight {
+      background: var(--white);
+    }
+
+    .service-panel {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+      align-items: stretch;
+      background: linear-gradient(120deg, rgba(22,60,122,0.06), rgba(75,183,201,0.12), rgba(109,87,200,0.09));
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow);
     }
 
     .pricing-box {
       background: var(--white);
+      border-radius: 26px;
+      padding: 30px;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 10px 28px rgba(22,60,122,0.08);
-      max-width: 760px;
-      margin: 0 auto;
-      text-align: center;
     }
 
-    .pricing-box h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 40px);
-      color: #07164a;
-      line-height: 1.15;
+    .pricing-box h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.7rem;
+      line-height: 1.18;
     }
 
-    .pricing-box .price-line {
-      font-size: 24px;
-      margin: 8px 0;
-      color: #07164a;
+    .pricing-box .large-price {
+      margin: 18px 0;
+      font-size: 2.45rem;
+      line-height: 1.05;
+      color: var(--navy);
+      font-weight: 900;
+      letter-spacing: -0.04em;
     }
 
-    .contact-layout {
+    .pricing-box .large-price small {
+      display: block;
+      margin-top: 6px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: normal;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(75,183,201,0.16);
+      color: var(--navy);
+      font-weight: 900;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-      align-items: start;
-    }
-
-    .contact-layout h2 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
       margin: 0;
-      font-size: clamp(28px, 4vw, 40px);
-      color: #07164a;
-      line-height: 1.15;
+      padding: 0;
+      list-style: none;
     }
 
-    form {
+    .feature-list li {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 26px;
-      box-shadow: 0 10px 28px rgba(22,60,122,0.08);
-    }
-
-    label {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #07164a;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d8e0ea;
-      border-radius: 10px;
-      font: inherit;
-      margin-bottom: 16px;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    .form-message {
-      display: none;
-      margin: 16px 0 0;
-      padding: 14px 16px;
-      border-radius: 10px;
+      border-radius: 18px;
+      padding: 16px 16px 16px 42px;
+      position: relative;
+      color: var(--muted);
       font-weight: 700;
     }
 
-    .form-message.success {
-      display: block;
-      background: #e8f7ee;
-      color: #17663a;
-      border: 1px solid #bfe7cd;
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      top: 16px;
+      left: 17px;
+      color: var(--success);
+      font-weight: 900;
     }
 
-    .form-message.error {
-      display: block;
-      background: #fff0f0;
-      color: #9b1c1c;
-      border: 1px solid #f1c3c3;
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
 
-    .hidden-field {
-      display: none;
-    }
-
-    footer {
-      background: var(--navy);
-      color: var(--white);
-      padding: 28px 20px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+    .portfolio-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      min-height: 260px;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      box-shadow: 0 12px 28px rgba(22, 60, 122, 0.08);
     }
 
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-    }
-
-    .footer-logo {
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(255,255,255,0.6);
-      border-radius: 8px;
+    .portfolio-image {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(120deg, rgba(22,60,122,0.1), rgba(75,183,201,0.22), rgba(109,87,200,0.14));
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--navy);
+      font-weight: 900;
+      text-align: center;
+      padding: 16px;
+      overflow: hidden;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 860px) {
-      .offer-grid,
-      .contact-layout {
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .portfolio-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .portfolio-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .portfolio-card p {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-size: 0.95rem;
+    }
+
+    .portfolio-card a {
+      color: var(--navy);
+      font-weight: 900;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      font-size: 0.92rem;
+    }
+
+    .process {
+      background: var(--white);
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(120deg, var(--navy), var(--teal));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .cta {
+      background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+    }
+
+    .cta p {
+      max-width: 680px;
+      margin: 0 auto 26px;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.08rem;
+    }
+
+    .footer {
+      background: #0f1c33;
+      color: rgba(255,255,255,0.82);
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .footer a {
+      color: var(--white);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner,
+      .service-panel {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding: 60px 18px 70px;
+      .grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .carousel-caption {
-        padding: 38px 18px 18px;
-      }
-
-      .carousel-button {
-        width: 42px;
-        height: 42px;
-        font-size: 24px;
-      }
-
-      .carousel-button.prev {
-        left: 12px;
-      }
-
-      .carousel-button.next {
-        right: 12px;
-      }
     }
 
-    @media (max-width: 560px) {
-      .carousel-caption h3 {
-        font-size: 21px;
+    @media (max-width: 680px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .carousel-caption a {
-        font-size: 15px;
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
-      .carousel-button {
-        width: 38px;
-        height: 38px;
-        font-size: 22px;
+      .hero {
+        padding: 58px 20px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .grid,
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-card {
+        min-height: auto;
+      }
+
+      section {
+        padding: 54px 20px;
       }
     }
   </style>
 </head>
-
 <body>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="logo-mark">N<span>W</span></div>
-      <h1>Norfolk Web Studio</h1>
-      <p>Simple, accessible websites for charities and local organisations.</p>
-      <a class="button" href="#contact">Get in touch</a>
-    </div>
+  <header class="top-bar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Norfolk Web Studio home">
+        <span class="logo">NW</span>
+        <span>Norfolk Web Studio</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#full-websites">Full Websites</a>
+        <a href="#one-page">One Page Websites</a>
+        <a href="#work">Our Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </header>
 
-  <section>
-    <div class="wrap">
-      <div class="section-title">
-        <h2>A few websites I’ve worked on</h2>
-        <div class="underline"></div>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow">Simple • Accessible • Affordable</span>
+          <h1>Websites that help local people find and trust your business.</h1>
+          <p>Norfolk Web Studio creates straightforward, professional websites for charities, small organisations, sole traders and local businesses who need a clear online presence without unnecessary complications.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Start a website enquiry</a>
+            <a class="button button-secondary" href="#services">View website options</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="One page website offer">
+          <h2>New: One Page Web Presence</h2>
+          <p>A simple, professional one-page website for sole traders and small local businesses.</p>
+          <div class="price">From £99 setup <span>then £12 per month for monitoring and small updates</span></div>
+          <ul>
+            <li>Ideal for trades, services and freelancers</li>
+            <li>Hosted securely for peace of mind</li>
+            <li>Mobile-friendly and easy to share</li>
+            <li>Clear contact buttons for enquiries</li>
+          </ul>
+        </aside>
       </div>
+    </section>
 
-      <div class="portfolio-carousel" aria-label="Website portfolio carousel">
-        <div class="carousel-window" id="carousel-window">
-          <div class="carousel-track" id="carousel-track">
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Practical website support without the overwhelm.</h2>
+          <p>Whether you need a full website, a quick landing page, or ongoing support, the focus is always on making your online presence clear, accessible and useful.</p>
+        </div>
 
-            <article class="carousel-slide">
-              <img class="carousel-image" src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
-              <div class="carousel-caption">
-                <h3>ASD Helping Hands</h3>
-                <a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a>
-              </div>
-            </article>
+        <div class="grid">
+          <article class="card">
+            <h3>Full websites</h3>
+            <p>For charities, community groups and organisations that need a larger website with multiple pages, clear navigation and room to grow.</p>
+          </article>
 
-            <article class="carousel-slide">
-              <img class="carousel-image" src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
-              <div class="carousel-caption">
-                <h3>Norfolk Autism Partnership</h3>
-                <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
-              </div>
-            </article>
+          <article class="card">
+            <h3>One-page websites</h3>
+            <p>A lower-cost option for sole traders and small businesses who need one professional page that explains who they are and how to contact them.</p>
+          </article>
 
-            <article class="carousel-slide">
-              <img class="carousel-image" src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
-              <div class="carousel-caption">
-                <h3>Norfolk Learning Disability Partnership</h3>
-                <a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a>
-              </div>
-            </article>
+          <article class="card">
+            <h3>Website care plans</h3>
+            <p>Ongoing support from £40 per month for small updates, monitoring, improvements and keeping your website feeling active and cared for.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <article class="carousel-slide">
-              <img class="carousel-image" src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
-              <div class="carousel-caption">
-                <h3>FADLOS</h3>
-                <a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a>
-              </div>
-            </article>
-
+    <section class="service-highlight" id="full-websites">
+      <div class="container">
+        <div class="service-panel">
+          <div class="pricing-box">
+            <span class="pill">For growing organisations</span>
+            <h3>Full Website Design</h3>
+            <p>A complete website package for charities, community groups, small organisations and businesses who need more than one page.</p>
+            <div class="large-price">From £450 <small>full website design</small></div>
+            <p>This is ideal if you need multiple pages, clearer navigation, service information, forms, resources, events, news, booking journeys or a website that can grow over time.</p>
+            <p>Optional website care plans are available from <strong>£40 per month</strong>, giving you ongoing support, monitoring and small updates after launch.</p>
+            <p>Every full website is planned around your audience, your goals and the information people need to find quickly.</p>
+            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Full%20Website%20Enquiry">Ask about a full website</a>
           </div>
 
-          <button class="carousel-button prev" id="prev-slide" aria-label="Previous website">‹</button>
-          <button class="carousel-button next" id="next-slide" aria-label="Next website">›</button>
+          <div>
+            <div class="section-heading" style="margin-bottom: 20px;">
+              <h2>What can a full website include?</h2>
+              <p>Full websites are suited to organisations that need more structure, more content and a more flexible online presence.</p>
+            </div>
+            <ul class="feature-list">
+              <li>Multiple website pages</li>
+              <li>Clear menus and page structure</li>
+              <li>Service, project or programme pages</li>
+              <li>Contact forms or enquiry journeys</li>
+              <li>News, blog or update sections</li>
+              <li>Events, resources or download areas</li>
+              <li>Accessibility and readability checks</li>
+              <li>Ongoing care plan options</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-highlight" id="one-page">
+      <div class="container">
+        <div class="service-panel">
+          <div class="pricing-box">
+            <span class="pill">Perfect for sole traders</span>
+            <h3>One Page Web Presence</h3>
+            <p>A simple, affordable website package for people who do not need a full website but still want to look professional online.</p>
+            <div class="large-price">From £99 setup <small>then £12 per month</small></div>
+            <p>The monthly fee includes hosting support, monitoring and small content updates, so your page stays current without you needing to manage the technical side.</p>
+            <p><strong>Please note:</strong> monthly updates are intended for small text, image or contact detail changes. Larger redesigns, new sections or bigger changes can be quoted separately.</p>
+            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=One%20Page%20Website%20Enquiry">Ask about a one-page website</a>
+          </div>
+
+          <div>
+            <div class="section-heading" style="margin-bottom: 20px;">
+              <h2>What can be included?</h2>
+              <p>Your one-page website can be shaped around your business, but will usually include the key information customers need before getting in touch.</p>
+            </div>
+            <ul class="feature-list">
+              <li>Business introduction and overview</li>
+              <li>Services or packages section</li>
+              <li>Contact details and enquiry buttons</li>
+              <li>Photos, examples or gallery area</li>
+              <li>Social media links</li>
+              <li>Google Maps or service area details</li>
+              <li>Mobile-friendly page design</li>
+              <li>Basic accessibility and readability checks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Examples of websites already created.</h2>
+          <p>Here are some examples of websites built or supported by Norfolk Web Studio.</p>
         </div>
 
-        <div class="carousel-dots" id="carousel-dots" aria-label="Choose a website slide">
-          <button class="carousel-dot active" aria-label="Show ASD Helping Hands website"></button>
-          <button class="carousel-dot" aria-label="Show Norfolk Autism Partnership website"></button>
-          <button class="carousel-dot" aria-label="Show Norfolk Learning Disability Partnership website"></button>
-          <button class="carousel-dot" aria-label="Show FADLOS website"></button>
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <div class="portfolio-image">
+              <img src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
+            </div>
+            <div class="portfolio-content">
+              <div>
+                <h3>ASD Helping Hands</h3>
+                <p>A clear charity website with service information, resources and support pathways.</p>
+              </div>
+              <a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-image">
+              <img src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
+            </div>
+            <div class="portfolio-content">
+              <div>
+                <h3>Norfolk Autism Partnership</h3>
+                <p>A partnership website sharing strategy information, news and autism-related resources.</p>
+              </div>
+              <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-image">
+              <img src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
+            </div>
+            <div class="portfolio-content">
+              <div>
+                <h3>Norfolk Learning Disability Partnership</h3>
+                <p>A practical website for sharing updates, information and partnership activity.</p>
+              </div>
+              <a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-image">
+              <img src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
+            </div>
+            <div class="portfolio-content">
+              <div>
+                <h3>FADLOS</h3>
+                <p>A community theatre website supporting show information, tickets and local promotion.</p>
+              </div>
+              <a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a>
+            </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section-light">
-    <div class="wrap offer-grid">
-      <div class="icon-circle">⌨</div>
-
-      <div>
-        <h2>What I offer</h2>
-        <div class="underline" style="margin-left:0;"></div>
-
-        <ul class="tick-list">
-          <li>Website design for charities, community groups and local organisations</li>
-          <li>Simple, clear and easy-to-manage websites</li>
-          <li>Mobile-friendly layouts that work well for real users</li>
-          <li>Ongoing support and maintenance after launch</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="pricing-box">
-        <h2>Pricing</h2>
-        <div class="underline"></div>
-        <p class="price-line"><strong>Websites from £450</strong></p>
-        <p class="price-line">Care plans from <strong>£40/month</strong></p>
-        <p>Simple, transparent pricing depending on what you need.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section-light">
-    <div class="wrap contact-layout">
-      <div>
-        <h2>Get in touch</h2>
-        <div class="underline" style="margin-left:0;"></div>
-
-        <p>If you’re thinking about improving your website or starting from scratch, feel free to get in touch — I’d be happy to take a look and share some ideas.</p>
-
-        <p><strong>Email:</strong> <a href="mailto:hello@norfolkwebstudio.co.uk">hello@norfolkwebstudio.co.uk</a></p>
-      </div>
-
-      <form id="contact-form" action="https://formsubmit.co/ajax/hello@norfolkwebstudio.co.uk" method="POST">
-        <input type="hidden" name="_subject" value="New Norfolk Web Studio enquiry">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-
-        <div class="hidden-field">
-          <label for="website">Leave this field empty</label>
-          <input type="text" id="website" name="_honey" tabindex="-1" autocomplete="off">
+    <section class="process">
+      <div class="container">
+        <div class="section-heading">
+          <h2>A straightforward process from enquiry to launch.</h2>
+          <p>The aim is to make getting online feel manageable, whether you are choosing a one-page web presence or a full website build.</p>
         </div>
 
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <div class="grid">
+          <article class="card">
+            <div class="step-number">1</div>
+            <h3>Tell us what you need</h3>
+            <p>Send a short enquiry with your business details, the type of website you are looking for and any examples you like.</p>
+          </article>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+          <article class="card">
+            <div class="step-number">2</div>
+            <h3>We build your website</h3>
+            <p>Your website is designed around your content, services and contact details, with a focus on clarity, accessibility and ease of use.</p>
+          </article>
 
-        <label for="message">Tell me what you need</label>
-        <textarea id="message" name="message" required></textarea>
-
-        <button class="button" type="submit">Send enquiry</button>
-
-        <div id="form-message" class="form-message" aria-live="polite"></div>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <div class="footer-logo">NW</div>
-        <span>Norfolk Web Studio</span>
+          <article class="card">
+            <div class="step-number">3</div>
+            <h3>Launch and support</h3>
+            <p>Once approved, your site goes live and can be monitored and updated through an affordable monthly support plan.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div>© 2026 Norfolk Web Studio</div>
-    </div>
+    <section class="cta" id="contact">
+      <div class="container">
+        <h2>Ready to create a simple online presence?</h2>
+        <p>Whether you need a full website or a one-page website for your sole trader business, send an enquiry and we will help you choose the right option.</p>
+        <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Email hello@norfolkwebstudio.co.uk</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Norfolk Web Studio</strong> | Simple, accessible websites for charities, small organisations, sole traders and local businesses.</p>
+    <p><a href="mailto:hello@norfolkwebstudio.co.uk">hello@norfolkwebstudio.co.uk</a></p>
   </footer>
-
-  <script>
-    /* CONTACT FORM */
-    const form = document.getElementById("contact-form");
-    const formMessage = document.getElementById("form-message");
-
-    form.addEventListener("submit", async function(event) {
-      event.preventDefault();
-
-      const submitButton = form.querySelector("button[type='submit']");
-      submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
-
-      formMessage.className = "form-message";
-      formMessage.textContent = "";
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: {
-            "Accept": "application/json"
-          }
-        });
-
-        if (response.ok) {
-          form.reset();
-          formMessage.className = "form-message success";
-          formMessage.textContent = "Thank you — your enquiry has been sent.";
-        } else {
-          formMessage.className = "form-message error";
-          formMessage.textContent = "Sorry, something went wrong. Please try again or email me directly.";
-        }
-      } catch (error) {
-        formMessage.className = "form-message error";
-        formMessage.textContent = "Sorry, something went wrong. Please try again or email me directly.";
-      }
-
-      submitButton.disabled = false;
-      submitButton.textContent = "Send enquiry";
-    });
-
-    /* PORTFOLIO CAROUSEL */
-    const track = document.getElementById("carousel-track");
-    const slides = Array.from(track.children);
-    const prevButton = document.getElementById("prev-slide");
-    const nextButton = document.getElementById("next-slide");
-    const dots = Array.from(document.querySelectorAll(".carousel-dot"));
-    const carouselWindow = document.getElementById("carousel-window");
-
-    let currentIndex = 0;
-    let autoSlideInterval;
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    function updateCarousel(index) {
-      currentIndex = index;
-
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      dots.forEach((dot, dotIndex) => {
-        dot.classList.toggle("active", dotIndex === currentIndex);
-      });
-    }
-
-    function nextSlide() {
-      const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
-      updateCarousel(nextIndex);
-    }
-
-    function previousSlide() {
-      const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-      updateCarousel(prevIndex);
-    }
-
-    function startAutoSlide() {
-      autoSlideInterval = setInterval(nextSlide, 3000);
-    }
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideInterval);
-      startAutoSlide();
-    }
-
-    nextButton.addEventListener("click", function() {
-      nextSlide();
-      resetAutoSlide();
-    });
-
-    prevButton.addEventListener("click", function() {
-      previousSlide();
-      resetAutoSlide();
-    });
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", function() {
-        updateCarousel(index);
-        resetAutoSlide();
-      });
-    });
-
-    carouselWindow.addEventListener("touchstart", function(event) {
-      touchStartX = event.changedTouches[0].screenX;
-    });
-
-    carouselWindow.addEventListener("touchend", function(event) {
-      touchEndX = event.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      const swipeDistance = touchStartX - touchEndX;
-
-      if (swipeDistance > 50) {
-        nextSlide();
-        resetAutoSlide();
-      }
-
-      if (swipeDistance < -50) {
-        previousSlide();
-        resetAutoSlide();
-      }
-    }
-
-    updateCarousel(0);
-    startAutoSlide();
-  </script>
-
 </body>
 </html>
