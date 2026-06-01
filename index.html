@@ -394,9 +394,9 @@
 
     .portfolio-slide {
       min-width: 100%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
     }
 
     .portfolio-card {
@@ -404,6 +404,7 @@
       border: 1px solid var(--border);
       border-radius: 22px;
       overflow: hidden;
+      width: min(100%, 560px);
       min-height: 360px;
       display: flex;
       flex-direction: column;
@@ -569,9 +570,6 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .portfolio-slide {
-        grid-template-columns: 1fr;
-      }
 
     }
 
@@ -684,14 +682,6 @@
             <h3>Website care plans</h3>
             <p>Ongoing support from £40 per month for small updates, monitoring, improvements and keeping your website feeling active and cared for.</p>
           </article>
-            </div>
-          </div>
-
-          <div class="carousel-controls" aria-label="Portfolio carousel controls">
-            <button class="carousel-button" type="button" id="portfolioPrev" aria-label="Previous website examples">‹</button>
-            <div class="carousel-dots" id="portfolioDots" aria-label="Select website examples"></div>
-            <button class="carousel-button" type="button" id="portfolioNext" aria-label="Next website examples">›</button>
-          </div>
         </div>
       </div>
     </section>
@@ -736,10 +726,11 @@
           <div class="pricing-box">
             <span class="pill">Perfect for sole traders</span>
             <h3>One Page Web Presence</h3>
-            <p>A simple, affordable website package for people who do not need a full website but still want to look professional online.</p>
+            <p>A simple, affordable website package for people who do not need a full website but still want to look professional online. In most cases, we can get your one-page website online within 48 hours once we have received your content and images.</p>
             <div class="large-price">From £99 setup <small>then £12 per month</small></div>
             <p>The monthly fee includes hosting support, monitoring and small content updates, so your page stays current without you needing to manage the technical side.</p>
             <p><strong>Please note:</strong> monthly updates are intended for small text, image or contact detail changes. Larger redesigns, new sections or bigger changes can be quoted separately.</p>
+            <p><strong>Domain disclaimer:</strong> if you would like a custom website address, this will need to be purchased separately at the client’s cost. We can advise you on the best option if needed.</p>
             <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=One%20Page%20Website%20Enquiry">Ask about a one-page website</a>
           </div>
 
@@ -773,59 +764,71 @@
         <div class="portfolio-showcase">
           <div class="portfolio-carousel" id="portfolioCarousel" aria-label="Website examples carousel">
             <div class="portfolio-slide">
-          <article class="portfolio-card">
-            <div class="portfolio-image">
-              <img src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
-            </div>
-            <div class="portfolio-content">
-              <div>
-                <h3>ASD Helping Hands</h3>
-                <p>A clear charity website with service information, resources and support pathways.</p>
-              </div>
-              <a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a>
-            </div>
-          </article>
-
-          <article class="portfolio-card">
-            <div class="portfolio-image">
-              <img src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
-            </div>
-            <div class="portfolio-content">
-              <div>
-                <h3>Norfolk Autism Partnership</h3>
-                <p>A partnership website sharing strategy information, news and autism-related resources.</p>
-              </div>
-              <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
-            </div>
-          </article>
+              <article class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
+                </div>
+                <div class="portfolio-content">
+                  <div>
+                    <h3>ASD Helping Hands</h3>
+                    <p>A clear charity website with service information, resources and support pathways.</p>
+                  </div>
+                  <a href="https://www.asdhelpinghands.org.uk" target="_blank" rel="noopener">asdhelpinghands.org.uk</a>
+                </div>
+              </article>
             </div>
 
             <div class="portfolio-slide">
-          <article class="portfolio-card">
-            <div class="portfolio-image">
-              <img src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
+              <article class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="images/napb.png" alt="Screenshot of the Norfolk Autism Partnership website">
+                </div>
+                <div class="portfolio-content">
+                  <div>
+                    <h3>Norfolk Autism Partnership</h3>
+                    <p>A partnership website sharing strategy information, news and autism-related resources.</p>
+                  </div>
+                  <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
+                </div>
+              </article>
             </div>
-            <div class="portfolio-content">
-              <div>
-                <h3>Norfolk Learning Disability Partnership</h3>
-                <p>A practical website for sharing updates, information and partnership activity.</p>
-              </div>
-              <a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a>
-            </div>
-          </article>
 
-          <article class="portfolio-card">
-            <div class="portfolio-image">
-              <img src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
+            <div class="portfolio-slide">
+              <article class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
+                </div>
+                <div class="portfolio-content">
+                  <div>
+                    <h3>Norfolk Learning Disability Partnership</h3>
+                    <p>A practical website for sharing updates, information and partnership activity.</p>
+                  </div>
+                  <a href="https://www.norfolkldpartnership.org.uk" target="_blank" rel="noopener">norfolkldpartnership.org.uk</a>
+                </div>
+              </article>
             </div>
-            <div class="portfolio-content">
-              <div>
-                <h3>FADLOS</h3>
-                <p>A community theatre website supporting show information, tickets and local promotion.</p>
-              </div>
-              <a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a>
+
+            <div class="portfolio-slide">
+              <article class="portfolio-card">
+                <div class="portfolio-image">
+                  <img src="images/FADLOS.png" alt="Screenshot of the FADLOS website">
+                </div>
+                <div class="portfolio-content">
+                  <div>
+                    <h3>FADLOS</h3>
+                    <p>A community theatre website supporting show information, tickets and local promotion.</p>
+                  </div>
+                  <a href="https://www.fadlos.org.uk" target="_blank" rel="noopener">fadlos.org.uk</a>
+                </div>
+              </article>
             </div>
-          </article>
+          </div>
+
+          <div class="carousel-controls" aria-label="Portfolio carousel controls">
+            <button class="carousel-button" type="button" id="portfolioPrev" aria-label="Previous website example">‹</button>
+            <div class="carousel-dots" id="portfolioDots" aria-label="Select website example"></div>
+            <button class="carousel-button" type="button" id="portfolioNext" aria-label="Next website example">›</button>
+          </div>
         </div>
       </div>
     </section>
@@ -894,7 +897,7 @@
     function startPortfolioAutoplay() {
       portfolioTimer = setInterval(() => {
         showPortfolioSlide(portfolioIndex + 1);
-      }, 7000);
+      }, 5000);
     }
 
     function resetPortfolioAutoplay() {
