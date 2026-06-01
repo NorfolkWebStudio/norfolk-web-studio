@@ -376,10 +376,27 @@
       font-weight: 900;
     }
 
-    .portfolio-grid {
+    .portfolio-showcase {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .portfolio-carousel {
+      display: flex;
+      transition: transform 0.55s ease;
+      will-change: transform;
+    }
+
+    .portfolio-slide {
+      min-width: 100%;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
     }
 
     .portfolio-card {
@@ -387,7 +404,7 @@
       border: 1px solid var(--border);
       border-radius: 22px;
       overflow: hidden;
-      min-height: 260px;
+      min-height: 360px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -407,6 +424,51 @@
       padding: 0;
       overflow: hidden;
       font-size: 0.9rem;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .carousel-button {
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(120deg, var(--navy), var(--teal));
+      color: var(--white);
+      cursor: pointer;
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1;
+      box-shadow: 0 8px 18px rgba(22, 60, 122, 0.18);
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--border);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .carousel-dot.active {
+      width: 34px;
+      background: linear-gradient(120deg, var(--navy), var(--teal));
     }
 
     .portfolio-image img {
@@ -503,9 +565,12 @@
         grid-template-columns: 1fr;
       }
 
-      .grid,
-      .portfolio-grid {
+      .grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .portfolio-slide {
+        grid-template-columns: 1fr;
       }
 
     }
@@ -539,8 +604,8 @@
         grid-template-columns: 1fr;
       }
 
-      .portfolio-grid {
-        grid-template-columns: 1fr;
+      .portfolio-showcase {
+        padding: 16px;
       }
 
       .portfolio-card {
@@ -619,6 +684,14 @@
             <h3>Website care plans</h3>
             <p>Ongoing support from £40 per month for small updates, monitoring, improvements and keeping your website feeling active and cared for.</p>
           </article>
+            </div>
+          </div>
+
+          <div class="carousel-controls" aria-label="Portfolio carousel controls">
+            <button class="carousel-button" type="button" id="portfolioPrev" aria-label="Previous website examples">‹</button>
+            <div class="carousel-dots" id="portfolioDots" aria-label="Select website examples"></div>
+            <button class="carousel-button" type="button" id="portfolioNext" aria-label="Next website examples">›</button>
+          </div>
         </div>
       </div>
     </section>
@@ -697,7 +770,9 @@
           <p>Here are some examples of websites built or supported by Norfolk Web Studio.</p>
         </div>
 
-        <div class="portfolio-grid">
+        <div class="portfolio-showcase">
+          <div class="portfolio-carousel" id="portfolioCarousel" aria-label="Website examples carousel">
+            <div class="portfolio-slide">
           <article class="portfolio-card">
             <div class="portfolio-image">
               <img src="images/ASDHH.png" alt="Screenshot of the ASD Helping Hands website">
@@ -723,7 +798,9 @@
               <a href="https://www.norfolkautismpartnership.org.uk" target="_blank" rel="noopener">norfolkautismpartnership.org.uk</a>
             </div>
           </article>
+            </div>
 
+            <div class="portfolio-slide">
           <article class="portfolio-card">
             <div class="portfolio-image">
               <img src="images/nldp.png" alt="Screenshot of the Norfolk Learning Disability Partnership website">
@@ -795,5 +872,60 @@
     <p><strong>Norfolk Web Studio</strong> | Simple, accessible websites for charities, small organisations, sole traders and local businesses.</p>
     <p><a href="mailto:hello@norfolkwebstudio.co.uk">hello@norfolkwebstudio.co.uk</a></p>
   </footer>
+  <script>
+    const portfolioCarousel = document.getElementById('portfolioCarousel');
+    const portfolioSlides = Array.from(portfolioCarousel.children);
+    const portfolioDots = document.getElementById('portfolioDots');
+    const portfolioPrev = document.getElementById('portfolioPrev');
+    const portfolioNext = document.getElementById('portfolioNext');
+    let portfolioIndex = 0;
+    let portfolioTimer;
+
+    function showPortfolioSlide(index) {
+      portfolioIndex = (index + portfolioSlides.length) % portfolioSlides.length;
+      portfolioCarousel.style.transform = `translateX(-${portfolioIndex * 100}%)`;
+
+      Array.from(portfolioDots.children).forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === portfolioIndex);
+        dot.setAttribute('aria-current', dotIndex === portfolioIndex ? 'true' : 'false');
+      });
+    }
+
+    function startPortfolioAutoplay() {
+      portfolioTimer = setInterval(() => {
+        showPortfolioSlide(portfolioIndex + 1);
+      }, 7000);
+    }
+
+    function resetPortfolioAutoplay() {
+      clearInterval(portfolioTimer);
+      startPortfolioAutoplay();
+    }
+
+    portfolioSlides.forEach((slide, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show website examples ${index + 1}`);
+      dot.addEventListener('click', () => {
+        showPortfolioSlide(index);
+        resetPortfolioAutoplay();
+      });
+      portfolioDots.appendChild(dot);
+    });
+
+    portfolioPrev.addEventListener('click', () => {
+      showPortfolioSlide(portfolioIndex - 1);
+      resetPortfolioAutoplay();
+    });
+
+    portfolioNext.addEventListener('click', () => {
+      showPortfolioSlide(portfolioIndex + 1);
+      resetPortfolioAutoplay();
+    });
+
+    showPortfolioSlide(0);
+    startPortfolioAutoplay();
+  </script>
 </body>
 </html>
