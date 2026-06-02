@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Norfolk Web Studio | Simple, Accessible Websites</title>
   <meta name="description" content="Norfolk Web Studio creates simple, accessible websites for charities, small organisations, sole traders and local businesses across Norfolk." />
+
   <style>
     :root {
       --navy: #163c7a;
@@ -376,6 +377,70 @@
       font-weight: 900;
     }
 
+    .mockup-section {
+      background: var(--light);
+    }
+
+    .mockup-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .mockup-form {
+      display: grid;
+      gap: 14px;
+      max-width: 760px;
+    }
+
+    .mockup-form label {
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .mockup-form input,
+    .mockup-form select,
+    .mockup-form textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font: inherit;
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    .mockup-form input:focus,
+    .mockup-form select:focus,
+    .mockup-form textarea:focus {
+      outline: 3px solid rgba(75, 183, 201, 0.28);
+      border-color: var(--teal);
+    }
+
+    .checkbox-label {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--ink) !important;
+      font-weight: 700 !important;
+    }
+
+    .checkbox-label input {
+      width: auto;
+      margin-top: 5px;
+    }
+
+    .form-button {
+      border: 0;
+      cursor: pointer;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
+      color: var(--white);
+      width: fit-content;
+      margin-top: 8px;
+    }
+
     .portfolio-showcase {
       position: relative;
       background: var(--white);
@@ -427,6 +492,43 @@
       font-size: 0.9rem;
     }
 
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .portfolio-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .portfolio-card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .portfolio-card p {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-size: 0.95rem;
+    }
+
+    .portfolio-card a {
+      color: var(--navy);
+      font-weight: 900;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      font-size: 0.92rem;
+    }
+
     .carousel-controls {
       display: flex;
       align-items: center;
@@ -470,43 +572,6 @@
     .carousel-dot.active {
       width: 34px;
       background: linear-gradient(120deg, var(--navy), var(--teal));
-    }
-
-    .portfolio-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .portfolio-content {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex: 1;
-    }
-
-    .portfolio-card h3 {
-      margin: 0 0 8px;
-      color: var(--navy);
-      font-size: 1.1rem;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .portfolio-card p {
-      color: var(--muted);
-      margin: 0 0 14px;
-      font-size: 0.95rem;
-    }
-
-    .portfolio-card a {
-      color: var(--navy);
-      font-weight: 900;
-      text-decoration: none;
-      overflow-wrap: anywhere;
-      font-size: 0.92rem;
     }
 
     .process {
@@ -569,8 +634,6 @@
       .grid {
         grid-template-columns: 1fr 1fr;
       }
-
-
     }
 
     @media (max-width: 680px) {
@@ -610,12 +673,22 @@
         min-height: auto;
       }
 
+      .mockup-card {
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .form-button {
+        width: 100%;
+      }
+
       section {
         padding: 54px 20px;
       }
     }
   </style>
 </head>
+
 <body>
   <header class="top-bar">
     <nav class="nav" aria-label="Main navigation">
@@ -623,10 +696,12 @@
         <span class="logo">NW</span>
         <span>Norfolk Web Studio</span>
       </a>
+
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#full-websites">Full Websites</a>
         <a href="#one-page">One Page Websites</a>
+        <a href="#free-mockup">Free Mock-up</a>
         <a href="#work">Our Work</a>
         <a href="#contact">Contact</a>
       </div>
@@ -640,8 +715,9 @@
           <span class="eyebrow">Simple • Accessible • Affordable</span>
           <h1>Websites that help local people find and trust your business.</h1>
           <p>Norfolk Web Studio creates straightforward, professional websites for charities, small organisations, sole traders and local businesses who need a clear online presence without unnecessary complications.</p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Start a website enquiry</a>
+            <a class="button button-primary" href="#free-mockup">Request a free homepage mock-up</a>
             <a class="button button-secondary" href="#services">View website options</a>
           </div>
         </div>
@@ -649,7 +725,12 @@
         <aside class="hero-card" aria-label="One page website offer">
           <h2>New: One Page Web Presence</h2>
           <p>A simple, professional one-page website for sole traders and small local businesses.</p>
-          <div class="price">From £99 setup <span>then £12 per month for monitoring and small updates — 12-month minimum term</span></div>
+
+          <div class="price">
+            From £99 setup
+            <span>then £12 per month for monitoring and small updates — 12-month minimum term</span>
+          </div>
+
           <ul>
             <li>Ideal for trades, services and freelancers</li>
             <li>Hosted securely for peace of mind</li>
@@ -693,11 +774,17 @@
             <span class="pill">For growing organisations</span>
             <h3>Full Website Design</h3>
             <p>A complete website package for charities, community groups, small organisations and businesses who need more than one page.</p>
-            <div class="large-price">From £450 <small>full website design</small></div>
+
+            <div class="large-price">
+              From £450
+              <small>full website design</small>
+            </div>
+
             <p>This is ideal if you need multiple pages, clearer navigation, service information, forms, resources, events, news, booking journeys or a website that can grow over time.</p>
             <p>Optional website care plans are available from <strong>£40 per month</strong>, giving you ongoing support, monitoring and small updates after launch.</p>
             <p>Every full website is planned around your audience, your goals and the information people need to find quickly.</p>
-            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Full%20Website%20Enquiry">Ask about a full website</a>
+
+            <a class="button button-primary" href="#free-mockup">Request a mock-up for a full website</a>
           </div>
 
           <div>
@@ -705,6 +792,7 @@
               <h2>What can a full website include?</h2>
               <p>Full websites are suited to organisations that need more structure, more content and a more flexible online presence.</p>
             </div>
+
             <ul class="feature-list">
               <li>Multiple website pages</li>
               <li>Clear menus and page structure</li>
@@ -727,11 +815,17 @@
             <span class="pill">Perfect for sole traders</span>
             <h3>One Page Web Presence</h3>
             <p>A simple, affordable website package for people who do not need a full website but still want to look professional online.</p>
-            <div class="large-price">From £99 setup <small>then £12 per month — 12-month minimum term</small></div>
+
+            <div class="large-price">
+              From £99 setup
+              <small>then £12 per month — 12-month minimum term</small>
+            </div>
+
             <p>The monthly fee includes hosting support, monitoring and small content updates, so your page stays current without you needing to manage the technical side. This package is offered on a <strong>12-month minimum term</strong>.</p>
             <p><strong>Please note:</strong> monthly updates are intended for small text, image or contact detail changes. Larger redesigns, new sections or bigger changes can be quoted separately.</p>
             <p><strong>Domain disclaimer:</strong> if you would like a custom website address, this will need to be purchased separately at the client’s cost. We can advise you on the best option if needed.</p>
-            <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=One%20Page%20Website%20Enquiry">Ask about a one-page website</a>
+
+            <a class="button button-primary" href="#free-mockup">Request a mock-up for a one-page website</a>
           </div>
 
           <div>
@@ -739,6 +833,7 @@
               <h2>What can be included?</h2>
               <p>Your one-page website can be shaped around your business, but will usually include the key information customers need before getting in touch.</p>
             </div>
+
             <ul class="feature-list">
               <li>Business introduction and overview</li>
               <li>Services or packages section</li>
@@ -752,6 +847,56 @@
               <li>Custom domain advice available</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="free-mockup" class="mockup-section">
+      <div class="container">
+        <div class="mockup-card">
+          <div class="section-heading">
+            <h2>Request a Free Homepage Mock-up</h2>
+            <p>Not sure what your website could look like? Complete the short form below and we’ll create a free homepage mock-up for your business or organisation.</p>
+          </div>
+
+          <form action="https://formspree.io/f/mojbglga" method="POST" class="mockup-form">
+            <input type="hidden" name="_subject" value="New free homepage mock-up request from Norfolk Web Studio website">
+
+            <label for="name">Your name *</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+
+            <label for="business-name">Business / organisation name *</label>
+            <input type="text" id="business-name" name="business_name" required>
+
+            <label for="email">Email address *</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel">
+
+            <label for="product-interest">What are you interested in? *</label>
+            <select id="product-interest" name="product_interest" required>
+              <option value="">Please select an option</option>
+              <option value="One-page website">One-page website</option>
+              <option value="Full website">Full website</option>
+            </select>
+
+            <label for="current-website">Do you currently have a website?</label>
+            <input type="url" id="current-website" name="current_website" placeholder="https://www.example.co.uk">
+
+            <label for="business-type">What type of business or organisation is it?</label>
+            <input type="text" id="business-type" name="business_type" placeholder="For example: plumber, cleaner, charity, community group">
+
+            <label for="mockup-details">Tell us a little about what you need *</label>
+            <textarea id="mockup-details" name="message" rows="6" required placeholder="Tell us what your business does, what you would like on the homepage, and any colours, styles or websites you like."></textarea>
+
+            <label class="checkbox-label" for="consent">
+              <input type="checkbox" id="consent" name="consent" value="Yes, consent given" required>
+              <span>I’m happy for Norfolk Web Studio to contact me about my free homepage mock-up request.</span>
+            </label>
+
+            <button type="submit" class="button form-button">Request My Free Mock-up</button>
+          </form>
         </div>
       </div>
     </section>
@@ -846,13 +991,13 @@
           <article class="card">
             <div class="step-number">1</div>
             <h3>Tell us what you need</h3>
-            <p>Send a short enquiry with your business details, the type of website you are looking for and any examples you like.</p>
+            <p>Complete the free mock-up request form with your business details, the type of website you are looking for and any examples you like.</p>
           </article>
 
           <article class="card">
             <div class="step-number">2</div>
-            <h3>We build your website</h3>
-            <p>Your website is designed around your content, services and contact details, with a focus on clarity, accessibility and ease of use.</p>
+            <h3>We create your mock-up</h3>
+            <p>We create a simple homepage concept so you can see how your website could look before deciding whether to move forward.</p>
           </article>
 
           <article class="card">
@@ -866,9 +1011,9 @@
 
     <section class="cta" id="contact">
       <div class="container">
-        <h2>Ready to create a simple online presence?</h2>
-        <p>Whether you need a full website or a one-page website for your sole trader business, send an enquiry and we will help you choose the right option.</p>
-        <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Email hello@norfolkwebstudio.co.uk</a>
+        <h2>Ready to see what your website could look like?</h2>
+        <p>Request a free homepage mock-up and we’ll help you explore whether a full website or one-page website is the right fit for your business or organisation.</p>
+        <a class="button button-primary" href="#free-mockup">Request a free homepage mock-up</a>
       </div>
     </section>
   </main>
@@ -877,6 +1022,7 @@
     <p><strong>Norfolk Web Studio</strong> | Simple, accessible websites for charities, small organisations, sole traders and local businesses.</p>
     <p><a href="mailto:hello@norfolkwebstudio.co.uk">hello@norfolkwebstudio.co.uk</a></p>
   </footer>
+
   <script>
     const portfolioCarousel = document.getElementById('portfolioCarousel');
     const portfolioSlides = Array.from(portfolioCarousel.children);
@@ -911,7 +1057,7 @@
       const dot = document.createElement('button');
       dot.className = 'carousel-dot';
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Show website examples ${index + 1}`);
+      dot.setAttribute('aria-label', `Show website example ${index + 1}`);
       dot.addEventListener('click', () => {
         showPortfolioSlide(index);
         resetPortfolioAutoplay();
