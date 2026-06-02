@@ -379,37 +379,68 @@
 
     .mockup-section {
       background: var(--light);
+      padding: 54px 20px;
     }
 
     .mockup-card {
+      max-width: 880px;
+      margin: 0 auto;
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 34px;
+      border-radius: 28px;
+      padding: 28px;
       box-shadow: var(--shadow);
+    }
+
+    .mockup-card .section-heading {
+      margin-bottom: 22px;
+    }
+
+    .mockup-card .section-heading h2 {
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+    }
+
+    .mockup-card .section-heading p {
+      font-size: 1rem;
     }
 
     .mockup-form {
       display: grid;
-      gap: 14px;
-      max-width: 760px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
     }
 
     .mockup-form label {
       color: var(--navy);
       font-weight: 800;
+      font-size: 0.94rem;
     }
 
     .mockup-form input,
     .mockup-form select,
     .mockup-form textarea {
       width: 100%;
-      padding: 14px 15px;
+      padding: 11px 13px;
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       font: inherit;
       color: var(--ink);
       background: var(--white);
+    }
+
+    .mockup-form textarea {
+      resize: vertical;
+      min-height: 115px;
     }
 
     .mockup-form input:focus,
@@ -421,15 +452,18 @@
 
     .checkbox-label {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: flex-start;
       color: var(--ink) !important;
       font-weight: 700 !important;
+      font-size: 0.92rem;
+      line-height: 1.45;
     }
 
     .checkbox-label input {
       width: auto;
-      margin-top: 5px;
+      margin-top: 4px;
+      flex-shrink: 0;
     }
 
     .form-button {
@@ -438,7 +472,7 @@
       background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
       color: var(--white);
       width: fit-content;
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .portfolio-showcase {
@@ -661,7 +695,8 @@
       }
 
       .grid,
-      .feature-list {
+      .feature-list,
+      .mockup-form {
         grid-template-columns: 1fr;
       }
 
@@ -674,7 +709,7 @@
       }
 
       .mockup-card {
-        padding: 24px;
+        padding: 22px;
         border-radius: 24px;
       }
 
@@ -856,46 +891,66 @@
         <div class="mockup-card">
           <div class="section-heading">
             <h2>Request a Free Homepage Mock-up</h2>
-            <p>Not sure what your website could look like? Complete the short form below and we’ll create a free homepage mock-up for your business or organisation.</p>
+            <p>Complete this short form and we’ll create a free homepage mock-up for your business or organisation.</p>
           </div>
 
           <form action="https://formspree.io/f/mojbglga" method="POST" class="mockup-form">
             <input type="hidden" name="_subject" value="New free homepage mock-up request from Norfolk Web Studio website">
 
-            <label for="name">Your name *</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
+            <div class="form-group">
+              <label for="name">Your name *</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
 
-            <label for="business-name">Business / organisation name *</label>
-            <input type="text" id="business-name" name="business_name" required>
+            <div class="form-group">
+              <label for="business-name">Business / organisation name *</label>
+              <input type="text" id="business-name" name="business_name" required>
+            </div>
 
-            <label for="email">Email address *</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
+            <div class="form-group">
+              <label for="email">Email address *</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
 
-            <label for="phone">Phone number</label>
-            <input type="tel" id="phone" name="phone" autocomplete="tel">
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
 
-            <label for="product-interest">What are you interested in? *</label>
-            <select id="product-interest" name="product_interest" required>
-              <option value="">Please select an option</option>
-              <option value="One-page website">One-page website</option>
-              <option value="Full website">Full website</option>
-            </select>
+            <div class="form-group">
+              <label for="product-interest">What are you interested in? *</label>
+              <select id="product-interest" name="product_interest" required>
+                <option value="">Please select an option</option>
+                <option value="One-page website">One-page website</option>
+                <option value="Full website">Full website</option>
+              </select>
+            </div>
 
-            <label for="current-website">Do you currently have a website?</label>
-            <input type="url" id="current-website" name="current_website" placeholder="https://www.example.co.uk">
+            <div class="form-group">
+              <label for="current-website">Current website, if you have one</label>
+              <input type="text" id="current-website" name="current_website" placeholder="For example: www.example.co.uk">
+            </div>
 
-            <label for="business-type">What type of business or organisation is it?</label>
-            <input type="text" id="business-type" name="business_type" placeholder="For example: plumber, cleaner, charity, community group">
+            <div class="form-group full-width">
+              <label for="business-type">What type of business or organisation is it?</label>
+              <input type="text" id="business-type" name="business_type" placeholder="For example: plumber, cleaner, charity, community group">
+            </div>
 
-            <label for="mockup-details">Tell us a little about what you need *</label>
-            <textarea id="mockup-details" name="message" rows="6" required placeholder="Tell us what your business does, what you would like on the homepage, and any colours, styles or websites you like."></textarea>
+            <div class="form-group full-width">
+              <label for="mockup-details">Tell us a little about what you need *</label>
+              <textarea id="mockup-details" name="message" rows="4" required placeholder="What does your business do? What would you like on the homepage? Any colours, styles or websites you like?"></textarea>
+            </div>
 
-            <label class="checkbox-label" for="consent">
-              <input type="checkbox" id="consent" name="consent" value="Yes, consent given" required>
-              <span>I’m happy for Norfolk Web Studio to contact me about my free homepage mock-up request.</span>
-            </label>
+            <div class="form-group full-width">
+              <label class="checkbox-label" for="consent">
+                <input type="checkbox" id="consent" name="consent" value="Yes, consent given" required>
+                <span>I’m happy for Norfolk Web Studio to contact me about my free homepage mock-up request.</span>
+              </label>
+            </div>
 
-            <button type="submit" class="button form-button">Request My Free Mock-up</button>
+            <div class="form-group full-width">
+              <button type="submit" class="button form-button">Request My Free Mock-up</button>
+            </div>
           </form>
         </div>
       </div>
