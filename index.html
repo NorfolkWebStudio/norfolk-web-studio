@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Norfolk Web Studio | Simple, Accessible Websites</title>
   <meta name="description" content="Norfolk Web Studio creates simple, accessible websites for charities, small organisations, sole traders and local businesses across Norfolk." />
 
@@ -84,6 +85,7 @@
       gap: 18px;
       font-size: 0.95rem;
       color: var(--muted);
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -183,6 +185,14 @@
     .button-secondary {
       border: 2px solid rgba(255,255,255,0.65);
       color: var(--white);
+    }
+
+    .button-gradient {
+      border: 0;
+      cursor: pointer;
+      background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
+      color: var(--white);
+      width: fit-content;
     }
 
     .hero-card {
@@ -290,6 +300,10 @@
       color: var(--muted);
     }
 
+    .card .button {
+      margin-top: 18px;
+    }
+
     .service-highlight {
       background: var(--white);
     }
@@ -375,6 +389,10 @@
       left: 17px;
       color: var(--success);
       font-weight: 900;
+    }
+
+    .start-section {
+      background: var(--light);
     }
 
     .mockup-section {
@@ -464,15 +482,6 @@
       width: auto;
       margin-top: 4px;
       flex-shrink: 0;
-    }
-
-    .form-button {
-      border: 0;
-      cursor: pointer;
-      background: linear-gradient(120deg, var(--navy) 0%, var(--teal) 55%, var(--purple) 100%);
-      color: var(--white);
-      width: fit-content;
-      margin-top: 4px;
     }
 
     .portfolio-showcase {
@@ -677,7 +686,6 @@
       }
 
       .nav-links {
-        flex-wrap: wrap;
         gap: 12px;
       }
 
@@ -713,7 +721,7 @@
         border-radius: 24px;
       }
 
-      .form-button {
+      .button-gradient {
         width: 100%;
       }
 
@@ -736,9 +744,9 @@
         <a href="#services">Services</a>
         <a href="#full-websites">Full Websites</a>
         <a href="#one-page">One Page Websites</a>
+        <a href="#website-enquiry">Start Enquiry</a>
         <a href="#free-mockup">Free Mock-up</a>
         <a href="#work">Our Work</a>
-        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
@@ -752,8 +760,8 @@
           <p>Norfolk Web Studio creates straightforward, professional websites for charities, small organisations, sole traders and local businesses who need a clear online presence without unnecessary complications.</p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#free-mockup">Request a free homepage mock-up</a>
-            <a class="button button-secondary" href="#services">View website options</a>
+            <a class="button button-primary" href="#website-enquiry">Start a website enquiry</a>
+            <a class="button button-secondary" href="#free-mockup">Request a free homepage mock-up</a>
           </div>
         </div>
 
@@ -819,7 +827,7 @@
             <p>Optional website care plans are available from <strong>£40 per month</strong>, giving you ongoing support, monitoring and small updates after launch.</p>
             <p>Every full website is planned around your audience, your goals and the information people need to find quickly.</p>
 
-            <a class="button button-primary" href="#free-mockup">Request a mock-up for a full website</a>
+            <a class="button button-primary" href="#website-enquiry">Start a full website enquiry</a>
           </div>
 
           <div>
@@ -860,7 +868,7 @@
             <p><strong>Please note:</strong> monthly updates are intended for small text, image or contact detail changes. Larger redesigns, new sections or bigger changes can be quoted separately.</p>
             <p><strong>Domain disclaimer:</strong> if you would like a custom website address, this will need to be purchased separately at the client’s cost. We can advise you on the best option if needed.</p>
 
-            <a class="button button-primary" href="#free-mockup">Request a mock-up for a one-page website</a>
+            <a class="button button-primary" href="#website-enquiry">Start a one-page website enquiry</a>
           </div>
 
           <div>
@@ -886,11 +894,40 @@
       </div>
     </section>
 
+    <section class="start-section" id="website-enquiry">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Choose how you’d like to start.</h2>
+          <p>Whether you already know what you need or would like to see an idea first, there are two simple ways to begin.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Start a website enquiry</h3>
+            <p>Ready to talk about a full website or one-page website? Send an enquiry and we’ll look at the best option for your business or organisation.</p>
+            <a class="button button-gradient" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Email about a website</a>
+          </article>
+
+          <article class="card">
+            <h3>Request a free mock-up</h3>
+            <p>Not sure what your website could look like yet? Complete the form and we’ll create a free homepage concept to help you visualise it.</p>
+            <a class="button button-gradient" href="#free-mockup">Request a mock-up</a>
+          </article>
+
+          <article class="card">
+            <h3>Ask a quick question</h3>
+            <p>Need to check something first? You can email us with a quick question about pricing, timescales, domains or website support.</p>
+            <a class="button button-gradient" href="mailto:hello@norfolkwebstudio.co.uk?subject=Quick%20website%20question">Ask a question</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="free-mockup" class="mockup-section">
       <div class="container">
         <div class="mockup-card">
           <div class="section-heading">
-            <h2>Request a Free Homepage Mock-up</h2>
+            <h2>Not ready to enquire yet? Request a Free Homepage Mock-up</h2>
             <p>Complete this short form and we’ll create a free homepage mock-up for your business or organisation.</p>
           </div>
 
@@ -949,7 +986,7 @@
             </div>
 
             <div class="form-group full-width">
-              <button type="submit" class="button form-button">Request My Free Mock-up</button>
+              <button type="submit" class="button button-gradient">Request My Free Mock-up</button>
             </div>
           </form>
         </div>
@@ -1046,13 +1083,13 @@
           <article class="card">
             <div class="step-number">1</div>
             <h3>Tell us what you need</h3>
-            <p>Complete the free mock-up request form with your business details, the type of website you are looking for and any examples you like.</p>
+            <p>Send a website enquiry or complete the free mock-up request form with your business details and the type of website you are looking for.</p>
           </article>
 
           <article class="card">
             <div class="step-number">2</div>
-            <h3>We create your mock-up</h3>
-            <p>We create a simple homepage concept so you can see how your website could look before deciding whether to move forward.</p>
+            <h3>Plan your website</h3>
+            <p>We’ll look at the best option for your needs, whether that is a one-page website, a full website or ongoing support.</p>
           </article>
 
           <article class="card">
@@ -1066,9 +1103,13 @@
 
     <section class="cta" id="contact">
       <div class="container">
-        <h2>Ready to see what your website could look like?</h2>
-        <p>Request a free homepage mock-up and we’ll help you explore whether a full website or one-page website is the right fit for your business or organisation.</p>
-        <a class="button button-primary" href="#free-mockup">Request a free homepage mock-up</a>
+        <h2>Ready to create a simple online presence?</h2>
+        <p>Start a website enquiry today, or request a free homepage mock-up if you would like to see an idea first.</p>
+
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="button button-primary" href="mailto:hello@norfolkwebstudio.co.uk?subject=Website%20enquiry">Start a website enquiry</a>
+          <a class="button button-secondary" href="#free-mockup">Request a free homepage mock-up</a>
+        </div>
       </div>
     </section>
   </main>
